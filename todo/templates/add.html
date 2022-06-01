@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block body-content%}
+<form name="add" action="{%url 'todo:add_task' %}"
+         method = "POST" >
+         {% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleInputID" class="form-label" style="color: white">Task ID</label>
+    <input type="text" name="id" class="form-control" id="exampleInputID" aria-describedby="emailHelp" >
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputName" class="form-label" style="color: white">Task Name</label>
+    <input type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="emailHelp" >
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPrio" class="form-label" style="color: white">Priority</label>
+    <input type="number" name="priority" class="form-control" id="exampleInputPrio" >
+  </div>
+  <label for="exampleInputPrio" class="form-label" style="color: white">Task Status</label>
+    <select class="form-select mb-3" aria-label="Default select example" name="status">
+      <option value=True>Done</option>
+      <option value=False>Not Yet</option>
+    </select>
+  <button type="submit" class="btn btn-info">ADD</button>
+</form>
+{%endblock%}

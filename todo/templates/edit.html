@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% block body-content%}
+<form name="edit" action = "{%url 'todo:update_task'%}"
+         method = "POST" >{% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleInputID" class="form-label" style="color: white">Task ID</label>
+    <input type="text" name="id" class="form-control" id="exampleInputID" aria-describedby="emailHelp" value={{task.id}}>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputName" class="form-label" style="color: white">Task Name</label>
+    <input type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="emailHelp" value={{task.name}}>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPrio" class="form-label" style="color: white">Priority</label>
+    <input type="number" name="priority" class="form-control" id="exampleInputPrio" value={{task.priority}}>
+  </div>
+  <label for="exampleInputPrio" class="form-label" style="color: white">Task Status</label>
+    <select class="form-select mb-3" aria-label="Default select example" name="status">
+      <option value=True  {% if task.is_done == True %}selected="selected"{% endif %}>Done</option>
+      <option value=False {% if task.is_done == False %}selected="selected"{% endif %}>Not Yet</option>
+    </select>
+  <button type="submit" class="btn btn-info">Edit</button>
+</form>
+{%endblock%}

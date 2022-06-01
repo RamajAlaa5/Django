@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% block body-content%}
+  <div class="card mt-4">
+  <div class="card-header bg-dark text-white">
+    Task Details
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <label class="col-4">Task Name:</label>
+      {{ task.name }}
+      <!-- <span class="col-8"></span> -->
+    </div>
+    <div class="row">
+      <label class="col-4">Priority:</label>
+      {{ task.priority }}
+    </div>
+    <div class="row">
+      <label class="col-4">Status:</label>
+      {{ task.is_done }}
+    </div>
+  </div>
+</div>
+{%endblock%}

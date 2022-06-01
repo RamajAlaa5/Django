@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body-content%}
+
+
+<div class="row mt-3" >
+    <h5 class="col-11" style="color: white">All Tasks</h5>
+    <a class="btn btn-primary col-1" href="{%url 'todo:create_task'%}">Add Task</a>
+</div>
+<table class="table mt-4"  >
+  <thead class="table-light">
+    <tr>
+        <th>ID</th>
+        <th>Programming Tasks</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody style="color: white">
+   {%for todo,values in todo_list.items%}
+        <tr>
+        <td>{{ todo }}</td>
+        <td>{{ values.name|title }}</td>
+        <td>{{ values.priority }}</td>
+        {% if values.is_done%}
+            <td class="text-success fw-bold">Done</td>
+        {% else %}
+            <td class="text-danger fw-bold">Not Yet</td>
+        {%endif%}
+        <td>
+            <a class="btn btn-primary" href="{%url 'todo:task_details' todo%}">View</a>
+            <a class="btn btn-info" href="{%url 'todo:edit_task' todo%}">Edit</a>
+            {% if values.is_done%}
+                <a class="btn btn-success disabled" href="#">Done</a>
+            {% else %}
+                <a class="btn btn-success" href="{%url 'todo:mark_as_done' todo%}">Done</a>
+            {%endif%}
+            <a class="btn btn-danger" href="{%url 'todo:delete_task' todo%}">Delete</a>
+        </td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{%endblock%}
+
